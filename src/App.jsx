@@ -32,6 +32,7 @@ export default function App() {
 
   function adicionarAoCarrinho(produto) {
     setCarrinho(carrinho.concat(produto))
+    alert(`Adicionado ao carrinho o produto: ${produto.title}`)
   }
 
   function removerUmaUnidade(produtoId) {

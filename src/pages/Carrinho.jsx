@@ -13,7 +13,7 @@ export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar
   const itens = agruparItens(carrinho)
   const total = calcularTotal(carrinho)
   const totalComDesconto = cupomAplicado ? total * (1 - cupomAplicado.desconto) : total
-
+  let valorFaltanteFrete = 200 - totalComDesconto
   const sugestoes = produtos
     .filter((produto) => !carrinho.find((item) => item.id === produto.id))
     .slice(0, 3)
@@ -70,7 +70,7 @@ export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar
 
         <aside className="resumo">
           <h2 className="resumo-titulo">Resumo do pedido</h2>
-
+          {valorFaltanteFrete > 0 && <h2 className="resumo-titulo">Falta {formatarPreco(valorFaltanteFrete)} para frete grátis!</h2>}
           <form className="cupom" onSubmit={aplicarCupom}>
             <label htmlFor="cupom" className="rotulo">
               Cupom de desconto

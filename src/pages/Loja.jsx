@@ -42,7 +42,9 @@ export default function Loja({ produtos, onAdicionar }) {
       </div>
 
       <div className="grade">
-        {produtosVisiveis.map((produto) => (
+        {produtosVisiveis
+        .filter((produto) => produto.estoque !== 0)
+        .map((produto) => (
           <ProdutoCard key={produto.id} produto={produto} onAdicionar={onAdicionar} />
         ))}
       </div>

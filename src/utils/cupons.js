@@ -11,6 +11,7 @@ export function validarCupom(codigo, cliente) {
   }
 
   if (codigoNormalizado === 'PRIMEIRACOMPRA' && cliente.pedidosAnteriores > 0) {
+    alert('Este cupom só pode ser usado na primeira compra.')
     return { valido: false }
   }
 

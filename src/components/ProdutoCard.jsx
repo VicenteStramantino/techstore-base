@@ -3,7 +3,10 @@ import { formatarPreco } from '../utils/formatarPreco'
 
 export default function ProdutoCard({ produto, onAdicionar }) {
   const esgotado = produto.estoque === 0
-
+  let statusBotao = false
+  if(Number.isNaN(Number(produto.price))) {
+    statusBotao = true
+  }
   return (
     <article className="card">
       <Link to={`/produto/${produto.id}`} className="card-link">
@@ -25,11 +28,11 @@ export default function ProdutoCard({ produto, onAdicionar }) {
       </div>
 
       <div className="card-selos">
-        {produto.price > 100 && <span className="selo selo-frete">Frete grátis</span>}
+        {produto.price > 200 && <span className="selo selo-frete">Frete grátis</span>}
         {esgotado && <span className="selo selo-esgotado">Esgotado</span>}
       </div>
 
-      <button className="botao" onClick={() => onAdicionar(produto)} disabled={esgotado}>
+      <button className="botao" onClick={() => onAdicionar(produto)} disabled={statusBotao}>
         Adicionar ao carrinho
       </button>
     </article>
